@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de gastos</title>
+    <link rel="stylesheet" type="text/css" href="stilo.css">
+</head>
+<body>
+    <header>
+        <h1>Gerenciador de gastos!</h1>
+    </header>
+
+    <div id="meuDinheiro">
+        <h2>Valor que possuo:</h2>
+    </div>
+    
+    <div id="inserirSaldo">
+        <h2> Quer colocar mais dinheiro no saldo?</h2>
+        <input type="number" id="adSaldo" name="preco">
+        <button onclick="adicionarSaldo()">adicionar ao saldo</button>
+    </div>
+
+    <div id="inserirCompra">
+        <h2> Realizou alguma compra?</h2>
+        <input type="number" id="valorGasto" name="preco">
+        <input id="descricaoGasto">
+        <button onclick="validarCompra()">Informar compra</button>
+    </div>
+
+
+    <main id="principal">
+       
+    </main>
+
+</body>
+<style s></style>
+<script src="main.js"></script>
+</html>
