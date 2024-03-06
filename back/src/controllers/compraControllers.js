@@ -24,6 +24,21 @@ class compraController{
         }
     }
 
+    static async excluirCompra(req, res) {
+        try {
+            const id = req.params.id
+            const compraExcluida = await compra.findByIdAndDelete(id);
+            if(compraExcluida != null){
+                console.log("compra excluida");
+            }else{
+                console.log("erro");
+            }
+            
+        } catch (error) {
+            res.status(500).json({message: `${error.message} - falha na exclusão`});
+        }
+    }
+
 }
 
 export default compraController;

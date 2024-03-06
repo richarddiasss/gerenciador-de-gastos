@@ -17,9 +17,24 @@ async function carregarPagina (){
 
 carregarPagina();
 
+async function excluirCompra (idd) {
+    const endPoint = `http://localhost:3000/compras/${idd}`;
+    try {
+        const response = await fetch(endPoint, {method: "DELETE"});
+        window.location.reload();
+    } catch (error) {
+        console.error({ message: error.message}, "Erroooo");
+    } finally{
+        window.location.reload();
+    }
+    
+    window.location.reload();
+}
+
 function obterGastos(gastos) {
-    gastos.forEach( (gasto) => {
+    gastos.forEach( (gasto, numero) => {
         let elemento = document.createElement("div");
+        elemento.id = `compra${numero+1}`;
         let preco = document.createElement("p");
         let descricao = document.createElement("p");
         let texto = document.createTextNode("preço: "+ gasto.preco + " Reais");
@@ -28,10 +43,26 @@ function obterGastos(gastos) {
         descricao.appendChild(texto);
         elemento.appendChild(preco);
         elemento.appendChild(descricao);
+        createButton(elemento, gasto._id);
         document.getElementById("principal").appendChild(elemento);
         
     });
 }
+
+function createButton(elemento, idd){
+     var btn = document.createElement('BUTTON');
+     btn.id = `${idd}`;
+     var lbl = document.createTextNode("excluir compra");        
+     btn.appendChild(lbl);   
+     btn.onclick = function()
+     {
+        excluirCompra(this.id);
+     }
+     
+     elemento.appendChild(btn);  
+}
+
+
  
 /* 
 function implementar() {
@@ -107,7 +138,7 @@ async function validarCompra () {
         console.error("Errouuu", error);
     }
 
-
+    window.location.reload();
 }
 
 async function modificarSaldo(preco) {
@@ -140,6 +171,7 @@ async function modificarSaldo(preco) {
     } catch (error) {
         console.error("Errouuu", error);
     }
+    window.location.reload();
 }
 
 async function adicionarSaldo() {
@@ -177,5 +209,6 @@ async function adicionarSaldo() {
     } catch (error) {
         console.error("Errouuu", error);
     }
+    window.location.reload();
 }
 
