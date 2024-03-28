@@ -13,6 +13,7 @@ conexao.once("open", () => {
     console.log("conexao com o banco de dados feita com sucesso.");
 }); 
 
+
 const app = express();
 routes(app);
 

@@ -9,7 +9,7 @@ const routes = (app) => {
     app.use(cors());
     
     app.route("/").get((req, res) => {
-        res.status(200).send("testando back end");
+        res.status(200).send("testando back endoioi");
     });
 
     app.use(express.json(), compras, saldo);

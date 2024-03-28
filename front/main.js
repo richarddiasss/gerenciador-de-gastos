@@ -10,7 +10,7 @@ async function carregarPagina (){
         carregarSaldo();
         
     } catch (error) {
-        console.log("Errouuuu");
+        console.log(error);
     }
     
 }
@@ -32,17 +32,22 @@ async function excluirCompra (idd) {
 }
 
 function obterGastos(gastos) {
+
     gastos.forEach( (gasto, numero) => {
+
         let elemento = document.createElement("div");
         elemento.id = `compra${numero+1}`;
         let preco = document.createElement("p");
         let descricao = document.createElement("p");
+
         let texto = document.createTextNode("preço: "+ gasto.preco + " Reais");
         preco.appendChild(texto);
         texto = document.createTextNode("Descrição: " + gasto.descricao);
+
         descricao.appendChild(texto);
         elemento.appendChild(preco);
         elemento.appendChild(descricao);
+
         createButton(elemento, gasto._id);
         document.getElementById("principal").appendChild(elemento);
         
@@ -50,6 +55,7 @@ function obterGastos(gastos) {
 }
 
 function createButton(elemento, idd){
+
      var btn = document.createElement('BUTTON');
      btn.id = `${idd}`;
      var lbl = document.createTextNode("excluir compra");        
@@ -84,7 +90,7 @@ async function obterSaldo () {
         return objetoValor;
 
     } catch (error) {
-        console.error({ message: error.message}, "Erroooo");
+        console.error({ message: error.message}, "Erro.");
     }
 
 }
@@ -113,7 +119,7 @@ async function validarCompra () {
         
         if( await modificarSaldo(precoNumber) == 0){
             console.log("saldo insuficiente ou preco negativa.");
-            //jogarHTML();
+
             return 0;
         }
 
@@ -135,11 +141,13 @@ async function validarCompra () {
         carregarPagina();
 
     } catch (error) {
-        console.error("Errouuu", error);
+        console.error("Erro.", error);
     }
 
     window.location.reload();
 }
+
+
 
 async function modificarSaldo(preco) {
 
@@ -156,7 +164,7 @@ async function modificarSaldo(preco) {
         if(saldoAnterior < preco || preco < 0){
             return 0;
         }
-        console.log("teste 1");
+
         const response = await fetch(endPoint, {
             method: "PUT",
             headers: {
@@ -166,10 +174,10 @@ async function modificarSaldo(preco) {
                 valor: saldoAtual
             })
         });
-        console.log("teste 2");
+   
 
     } catch (error) {
-        console.error("Errouuu", error);
+        console.error("Erro.", error);
     }
     window.location.reload();
 }
@@ -190,11 +198,10 @@ async function adicionarSaldo() {
         console.log(saldoAnterior, recarga);
         console.log(saldoAtual);
         if(recarga < 0){
-            console.log("não é aceito valores negativos");
+            console.log("Não é aceito valores negativos.");
             return 0;
         }
 
-        console.log("teste 1");
         const response = await fetch(endPoint, {
             method: "PUT",
             headers: {
@@ -204,10 +211,10 @@ async function adicionarSaldo() {
                 valor: saldoAtual
             })
         });
-        console.log("teste 2");
+    
 
     } catch (error) {
-        console.error("Errouuu", error);
+        console.error("Erro.", error);
     }
     window.location.reload();
 }
